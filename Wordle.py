@@ -1,6 +1,10 @@
 # File: Wordle.py
 
 """
+Zach Bagley, Patrick Petty, Mark Thuet, Mark Barlocker
+"""
+
+"""
 This module is the starter file for the Wordle assignment.
 BE SURE TO UPDATE THIS COMMENT WHEN YOU WRITE THE CODE.
 """
