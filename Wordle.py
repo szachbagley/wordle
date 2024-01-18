@@ -26,6 +26,13 @@ def wordle():
     gw = WordleGWindow()
     gw.add_enter_listener(enter_action)
 
+    # Pick a random word from the list
+    word = random.choice(FIVE_LETTER_WORDS).upper()
+    
+    # Display the word in the first row of boxes
+    for i in range(len(word)):
+        gw.set_square_letter(0, i, word[i])
+
 # Startup code
 
 if __name__ == "__main__":
