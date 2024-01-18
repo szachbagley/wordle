@@ -17,6 +17,7 @@ from WordleGraphics import WordleGWindow, N_COLS, N_ROWS
 def wordle():
 
     def enter_action(s):
+        s = s.lower()
         if s not in FIVE_LETTER_WORDS:
             gw.show_message("Not in word list")
         else:
