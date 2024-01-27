@@ -1,21 +1,12 @@
-# File: Wordle.py
-
-"""
-Zach Bagley, Patrick Petty, Mark Thuet, Mark Barlocker
-"""
-
-"""
-This module is the starter file for the Wordle assignment.
-BE SURE TO UPDATE THIS COMMENT WHEN YOU WRITE THE CODE.
-"""
-
 import random
 
 from WordleDictionary import FIVE_LETTER_WORDS
 from WordleGraphics import WordleGWindow, N_COLS, N_ROWS
 
-def wordle():
+# Global variable to store statistics for the current session
+guess_statistics = {}
 
+def wordle():
     def enter_action(s):
         s = s.lower()
         if s not in FIVE_LETTER_WORDS:
@@ -23,17 +14,26 @@ def wordle():
         else:
             gw.show_message("Congrats! Your word is valid.")
 
+            # Update guess statistics
+            num_guesses = gw.get_current_row() + 1
+            if num_guesses not in guess_statistics:
+                guess_statistics[num_guesses] = 1
+            else:
+                guess_statistics[num_guesses] += 1
+
+            # Check if the game is over
+            if gw.get_current_row() == N_ROWS - 1:
+                display_game_over()
+
+    def display_game_over():
+        # Display statistics at the end of each game
+        gw.show_message("Game Over! Guess Statistics:")
+        for guesses, count in guess_statistics.items():
+            gw.show_message(f"{guesses} guesses: {count} times")
+
     gw = WordleGWindow()
     gw.add_enter_listener(enter_action)
 
-    # Pick a random word from the list
-    word = random.choice(FIVE_LETTER_WORDS).upper()
-    
-    # Display the word in the first row of boxes
-    for i in range(len(word)):
-        gw.set_square_letter(0, i, word[i])
-
 # Startup code
-
 if __name__ == "__main__":
     wordle()
