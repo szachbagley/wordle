@@ -125,9 +125,6 @@ class WordleGWindow:
                     sq = self._grid[self._row][self._col]
                     sq.set_letter(ch)
                     self._col += 1
-
-
-
         def press_action(tke):
             self._down_x = tke.x
             self._down_y = tke.y
@@ -212,7 +209,6 @@ class WordleGWindow:
 
     def show_message(self, msg, color="Black"):
         self._message.set_text(msg, color)
-
 
 class WordleSquare:
 
