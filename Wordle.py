@@ -1,5 +1,7 @@
 import random
 import pyperclip
+import tkinter as tk
+from tkinter import messagebox
 
 from WordleDictionary import FIVE_LETTER_WORDS
 from WordleGraphics import WordleGWindow, N_COLS, N_ROWS
@@ -11,6 +13,7 @@ guess_statistics = {}
 
 def wordle():
     def enter_action(s):
+        
         s = s.lower()
         if s not in FIVE_LETTER_WORDS:
             gw.show_message("Not in word list")
@@ -66,6 +69,22 @@ def wordle():
      #   for guesses, count in guess_statistics.items():
       #      gw.show_message(f"{guesses} guesses: {count} times")
 
+    colorblind = False
+        
+    result = messagebox.askquestion("Mode Selection", "Do you want to play in colorblind mode?")
+        
+    if result == "yes":
+        colorblind = True
+    else: 
+        colorblind = False
+        
+    if colorblind == False:
+        CORRECT_COLOR = "#66BB66"       # Light green for correct letters
+        PRESENT_COLOR = "#CCBB66"       # Brownish yellow for misplaced letters
+    else: 
+        CORRECT_COLOR = "#0000FF"
+        PRESENT_COLOR = "#FF0000"
+    
     gw = WordleGWindow()
     gw.add_enter_listener(enter_action)
 

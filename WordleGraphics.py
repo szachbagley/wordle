@@ -11,6 +11,7 @@ import math
 import time
 import tkinter
 
+
 # Constants
 
 N_ROWS = 6			# Number of rows
